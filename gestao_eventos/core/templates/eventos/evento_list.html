@@ -1,7 +1,7 @@
 {% extends 'eventos/base.html' %}
 
 {% block content %}
-    <h2>Lista de Eventos</h2>
+    <h2>Eventos</h2>
     <a href="{% url 'criar_evento' %}" class="button">Adicionar Novo Evento</a>
     <div class="card-container">
         {% for evento in eventos %}
