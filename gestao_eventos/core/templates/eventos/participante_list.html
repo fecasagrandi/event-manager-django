@@ -1,0 +1,12 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+    <h2>Lista de Participantes</h2>
+    <ul>
+        {% for participante in participantes %}
+            <li>{{ participante.nome }} - E-mail: {{ participante.email }}</li>
+        {% empty %}
+            <li>Não há participantes cadastrados.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

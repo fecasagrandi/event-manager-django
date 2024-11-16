@@ -1,0 +1,16 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+    <h2>{% if evento %}Editar Evento{% else %}Criar Novo Evento{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Nome:</label><br>
+        <input type="text" name="nome" value="{{ evento.nome|default:'' }}" required><br><br>
+        <label>Local:</label><br>
+        <input type="text" name="local" value="{{ evento.local|default:'' }}" required><br><br>
+        <label>Data:</label><br>
+        <input type="datetime-local" name="data" value="{{ evento.data|default:'' }}" required><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'listar_eventos' %}">Voltar</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+    <h2>Lista de Eventos</h2>
+    <a href="{% url 'criar_evento' %}" class="button">Adicionar Novo Evento</a>
+    <div class="card-container">
+        {% for evento in eventos %}
+            <div class="card">
+                <h3>{{ evento.nome }}</h3>
+                <p><strong>Local:</strong> {{ evento.local }}</p>
+                <p><strong>Data:</strong> {{ evento.data }}</p>
+                <div class="actions">
+                    <a href="{% url 'editar_evento' evento.id %}" class="button">Editar</a>
+                    <a href="{% url 'deletar_evento' evento.id %}" class="button delete">Deletar</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>Não há eventos cadastrados.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

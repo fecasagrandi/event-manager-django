@@ -50,6 +50,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'core/static',
+]
+
 ROOT_URLCONF = 'gestao_eventos.urls'
 
 TEMPLATES = [
