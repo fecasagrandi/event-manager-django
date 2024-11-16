@@ -1,12 +1,21 @@
 {% extends 'eventos/base.html' %}
 
 {% block content %}
-    <h2>Lista de Participantes</h2>
-    <ul>
-        {% for participante in participantes %}
-            <li>{{ participante.nome }} - E-mail: {{ participante.email }}</li>
-        {% empty %}
-            <li>Não há participantes cadastrados.</li>
-        {% endfor %}
-    </ul>
+<h2>Lista de Participantes</h2>
+<a href="{% url 'criar_participante' %}" class="button">Adicionar Novo Participante</a>
+<div class="card-container">
+    {% for participante in participantes %}
+        <div class="card">
+            <h3>{{ participante.nome }}</h3>
+            <p><strong>Email:</strong> {{ participante.email }}</p>
+            <div class="actions">
+                <a href="{% url 'editar_participante' participante.id %}" class="button">Editar</a>
+                <a href="{% url 'deletar_participante' participante.id %}" class="button delete">Deletar</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Não há participantes cadastrados.</p>
+    {% endfor %}
+</div>
 {% endblock %}
+
