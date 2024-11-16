@@ -1,0 +1,20 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>Lista de Ingressos</h2>
+<a href="{% url 'criar_ingresso' %}" class="button-add">Adicionar Novo Ingresso</a>
+<div class="card-container">
+    {% for ingresso in ingressos %}
+        <div class="card">
+            <h3>{{ ingresso.evento.nome }}</h3>
+            <p><strong>Participante:</strong> {{ ingresso.participante.nome }}</p>
+            <p><strong>Data da Compra:</strong> {{ ingresso.data_compra }}</p>
+            <div class="actions">
+                <a href="{% url 'deletar_ingresso' ingresso.id %}" class="button delete">Deletar</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Não há ingressos cadastrados.</p>
+    {% endfor %}
+</div>
+{% endblock %}

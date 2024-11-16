@@ -1,0 +1,25 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>{% if artista %}Editar Artista{% else %}Criar Artista{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ artista.nome|default:'' }}" required>
+    </div>
+    <div>
+        <label for="biografia">Biografia:</label>
+        <textarea id="biografia" name="biografia" rows="4" required>{{ artista.biografia|default:'' }}</textarea>
+    </div>
+    <div>
+        <label for="evento">Evento:</label>
+        <select name="evento" id="evento" required>
+            {% for evento in eventos %}
+                <option value="{{ evento.id }}" {% if artista and artista.evento.id == evento.id %}selected{% endif %}>{{ evento.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}

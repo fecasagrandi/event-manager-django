@@ -1,0 +1,22 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>Lista de Feedbacks</h2>
+<a href="{% url 'criar_feedback' %}" class="button-add">Adicionar Feedback</a>
+<div class="card-container">
+    {% for feedback in feedbacks %}
+        <div class="card">
+            <h3>{{ feedback.palestrante.nome }}</h3>
+            <p><strong>Participante:</strong> {{ feedback.participante.nome }}</p>
+            <p><strong>Evento:</strong> {{ feedback.evento.nome }}</p>
+            <p><strong>Comentário:</strong> {{ feedback.comentario }}</p>
+            <p><strong>Nota:</strong> {{ feedback.nota }}</p>
+            <div class="actions">
+                <a href="{% url 'deletar_feedback' feedback.id %}" class="button delete">Deletar</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Não há feedbacks cadastrados.</p>
+    {% endfor %}
+</div>
+{% endblock %}

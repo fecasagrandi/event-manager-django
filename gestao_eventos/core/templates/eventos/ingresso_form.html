@@ -1,0 +1,25 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>Criar Ingresso</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="evento">Evento:</label>
+        <select name="evento" id="evento" required>
+            {% for evento in eventos %}
+                <option value="{{ evento.id }}">{{ evento.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="participante">Participante:</label>
+        <select name="participante" id="participante" required>
+            {% for participante in participantes %}
+                <option value="{{ participante.id }}">{{ participante.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Salvar Ingresso</button>
+</form>
+{% endblock %}

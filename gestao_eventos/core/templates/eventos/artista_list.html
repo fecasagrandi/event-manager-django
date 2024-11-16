@@ -1,0 +1,21 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>Lista de Artistas</h2>
+<a href="{% url 'criar_artista' %}" class="button-add">Adicionar Novo Artista</a>
+<div class="card-container">
+    {% for artista in artistas %}
+        <div class="card">
+            <h3>{{ artista.nome }}</h3>
+            <p><strong>Evento:</strong> {{ artista.evento.nome }}</p>
+            <p><strong>Biografia:</strong> {{ artista.biografia }}</p>
+            <div class="actions">
+                <a href="{% url 'editar_artista' artista.id %}" class="button">Editar</a>
+                <a href="{% url 'deletar_artista' artista.id %}" class="button delete">Deletar</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Não há artistas cadastrados.</p>
+    {% endfor %}
+</div>
+{% endblock %}

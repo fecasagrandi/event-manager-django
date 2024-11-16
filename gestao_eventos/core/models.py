@@ -23,7 +23,7 @@ class Ingresso(models.Model):
     def __str__(self):
         return f"Ingresso para {self.evento.nome} - {self.participante.nome}"
 
-class Palestrante(models.Model):
+class Artista(models.Model):
     nome = models.CharField(max_length=100)
     biografia = models.TextField()
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
@@ -34,9 +34,9 @@ class Palestrante(models.Model):
 class Feedback(models.Model):
     participante = models.ForeignKey(Participante, on_delete=models.CASCADE)
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
-    palestrante = models.ForeignKey(Palestrante, on_delete=models.CASCADE)
+    artista = models.ForeignKey(Artista, on_delete=models.CASCADE)
     comentario = models.TextField()
     nota = models.IntegerField()
 
     def __str__(self):
-        return f"Feedback de {self.participante.nome} para {self.palestrante.nome}"
+        return f"Feedback de {self.participante.nome} para {self.artista.nome}"

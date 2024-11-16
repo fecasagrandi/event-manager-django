@@ -1,0 +1,41 @@
+{% extends 'eventos/base.html' %}
+
+{% block content %}
+<h2>Adicionar Feedback</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="participante">Participante:</label>
+        <select name="participante" id="participante" required>
+            {% for participante in participantes %}
+                <option value="{{ participante.id }}">{{ participante.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="evento">Evento:</label>
+        <select name="evento" id="evento" required>
+            {% for evento in eventos %}
+                <option value="{{ evento.id }}">{{ evento.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="artista">Artista:</label>
+        <select name="artista" id="artista" required>
+            {% for artista in artistas %}
+                <option value="{{ artista.id }}">{{ artista.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="comentario">Comentário:</label>
+        <textarea name="comentario" id="comentario" rows="4" required></textarea>
+    </div>
+    <div>
+        <label for="nota">Nota (1-10):</label>
+        <input type="number" name="nota" id="nota" min="1" max="10" required>
+    </div>
+    <button type="submit">Salvar Feedback</button>
+</form>
+{% endblock %}
